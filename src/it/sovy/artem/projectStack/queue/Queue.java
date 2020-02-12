@@ -38,7 +38,7 @@ public class Queue<T> {
         if (isEmpty()) {
             throw new QueueOverFlowException("The stack is empty!");
         } else {
-            list.remove(size - 1);  // calculates FIFO
+            list.remove(0);  // calculates FIFO
             size--;
         }
     }

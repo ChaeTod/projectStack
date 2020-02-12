@@ -40,7 +40,7 @@ public class Stack<T> { //will have a generic type T
         if (isEmpty()) {
             throw new StackOverFlowException("The stack is empty!");
         } else {
-            list.remove(0);  // calculates LIFO
+            list.remove(size - 1);  // calculates LIFO
             size--;
         }
     }
@@ -53,7 +53,7 @@ public class Stack<T> { //will have a generic type T
         }
     }
 
-    public void show(){
+    public void show() {
         //for (T q : list){
         System.out.println(list);
         //}
@@ -69,7 +69,7 @@ public class Stack<T> { //will have a generic type T
         }
     }
 
-    public void empty(){
+    public void empty() {
         // Three possibilities
         // list.removeAll();
         //list.clear();
