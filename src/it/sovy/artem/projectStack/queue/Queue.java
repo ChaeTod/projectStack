@@ -1,18 +1,16 @@
-package it.sovy.artem.projectStack.Stack;
+package it.sovy.artem.projectStack.queue;
 
 import it.sovy.artem.projectStack.Exception.QueueOverFlowException;
-import it.sovy.artem.projectStack.Exception.StackOverFlowException;
-import it.sovy.artem.projectStack.Exception.StackUnderFlowException;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Stack<T> { //will have a generic type T
+public class Queue<T> {
     private int size = 0;
     private int capacity;
     private List<T> list;
 
-    public Stack(int capacity) {
+    public Queue(int capacity) {
         this.capacity = capacity;
         list = new ArrayList<>();
     }
@@ -25,24 +23,30 @@ public class Stack<T> { //will have a generic type T
         return size == capacity;
     }
 
-    public void push(T obj) throws StackOverFlowException {
+    public void push(T obj) throws QueueOverFlowException {
         if (obj == null)
             return;
         if (!isFull()) {
             list.add(obj);
             size++;
         } else {
-            throw new StackOverFlowException("The stack is full!");
+            throw new QueueOverFlowException("The stack is full!");
         }
     }
 
-    public void pop() throws StackOverFlowException {
+    public void pop() throws QueueOverFlowException {
         if (isEmpty()) {
-            throw new StackOverFlowException("The stack is empty!");
+            throw new QueueOverFlowException("The stack is empty!");
         } else {
-            list.remove(0);  // calculates LIFO
+            list.remove(size - 1);  // calculates FIFO
             size--;
         }
+    }
+
+    public void show(){
+        //for (T q : list){
+            System.out.println(list);
+        //}
     }
 
     public T top() {
@@ -53,13 +57,7 @@ public class Stack<T> { //will have a generic type T
         }
     }
 
-    public void show(){
-        //for (T q : list){
-        System.out.println(list);
-        //}
-    }
-
-    public T topAndPop() throws StackOverFlowException {
+    public T topAndPop() throws QueueOverFlowException {
         if (isEmpty()) {
             return null;
         } else {
@@ -75,6 +73,10 @@ public class Stack<T> { //will have a generic type T
         //list.clear();
         size = 0;  // second method to remove all is just to remove a size
     }
+
+
+
+
 
     public int getSize() {
         return size;
